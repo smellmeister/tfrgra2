@@ -8,6 +8,7 @@ country_event = {
     title = gra_ncarolina.1.t
     desc = gra_ncarolina.1.desc
     fire_only_once = yes
+    days = 2
     trigger = {
         GRA = {
             has_country_flag = GRA_released_nc_flag
@@ -68,6 +69,12 @@ country_event = {
                     elections_allowed = yes
                     election_frequency = 48
                 }
+                create_country_leader = {
+                    name = SNC_Roy_Cooper_char
+                    desc = "POLITICS_ROY_COOPER_DESC"
+                    picture = GFX_portrait_SNC_Roy_Cooper
+                    ideology = supervised_democracy_liberal
+                }
             }
             set_autonomy = {
                 target = STC
@@ -96,114 +103,5 @@ country_event = {
 
         }
         country_event = gra_scarolina.3
-    }
-}
-
-#south carolina proposes collaboration (nonagg -> puppet / nothing -> nonagg -> puppet)
-country_event = {
-    id = gra_scarolina.1
-    title = gra_scarolina.1.t
-    desc = gra_scarolina.1.desc
-    fire_only_once = yes
-        trigger = {
-            country_exists = STC
-            GRA = {
-                OR = {
-                    has_country_flag = GRA_nc_republicanchoice
-                    has_country_flag = GRA_nc_democratchoice
-                }
-            }
-        }
-
-    
-        option = {
-            name = gra_scarolina.1.a
-            custom_effect_tooltip = GRA_sc_nonagg_puppet
-            trigger = { GRA = { has_non_aggression_pact_with = STC } }
-            hidden_effect = {
-                STC = {
-                    set_politics = {
-                        ruling_party = conservative
-                        elections_allowed = yes
-                        election_frequency = 48
-                    }
-                }
-                GRA = {
-                    set_autonomy = {
-                        target = STC
-                        autonomy_state = autonomy_supervised_state
-                    }
-                }
-            }
-
-        }
-
-        option = {
-            name = gra_scarolina.1.c
-            trigger = {
-                GRA = { 
-                    NOT = { 
-                    has_non_aggression_pact_with = STC
-                    has_subject = STC
-                    } 
-                } 
-            }
-            GRA = {
-                diplomatic_relation = {
-                    country = STC
-                    relation = non_aggression_pact
-                    active = yes
-                }
-                country_event = gra_scarolina.2
-            }
-        }
-}
-
-#nothing -> nonagg -> puppet
-country_event = {
-    id = gra_scarolina.2
-    title = gra_scarolina.2.t
-    desc = gra_scarolina.2.desc
-    fire_only_once = yes
-    trigger = {
-        country_exists = STC
-        GRA = { 
-            has_non_aggression_pact_with = STC
-            OR = {
-                has_country_flag = GRA_nc_republicanchoice
-                has_country_flag = GRA_nc_democratchoice
-            }
-        }
-    }
-
-    option = {
-        name = gra_scarolina.2.a
-        GRA = {
-            set_autonomy = {
-                target = STC
-                autonomy_state = autonomy_supervised_state
-            }
-        }
-    }
-}
-
-#south carolina occupation
-country_event = {
-    id = gra_scarolina.3
-    title = gra_scarolina.3.t
-    desc = gra_scarolina.3.desc
-    fire_only_once = yes
-    trigger = {
-        country_exists = STC
-        GRA = { has_country_flag = GRA_nc_occupationchoice }
-    }    
-
-    option = {
-        name = gra_scarolina.3.a
-        create_wargoal = {
-            type = take_state_focus
-            target = STC
-            generator = {}
-        }
     }
 }

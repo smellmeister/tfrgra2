@@ -26,7 +26,24 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 50
 			add_war_support = 0.05
-
+			create_corps_commander = {
+				name = "Dennis Watts"
+				picture = GFX_portrait_GRA_Dennis_Watts
+				traits = {}
+				skill = 2
+				attack_skill = 2
+				defense_skill = 3
+				logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = "Robert Bayne"
+				picture = GFX_portrait_GRA_Robert_Bayne
+				traits = {}
+				skill = 2
+				attack_skill = 2
+				defense_skill = 3
+				logistics_skill = 3
+			}
 			# Grant Equipment
 			add_equipment_to_stockpile = {
 				#type = infantry_equipment_0
@@ -64,8 +81,7 @@ focus_tree = {
 						division = "name = \"4th GSDF Brigade\" division_template = \"National Guard\" start_experience_factor = 0.1"
 						owner = ROOT
 					}
-					recruit_character = GRA_Dennis_Watts_char
-					recruit_character = GRA_Robert_Bayne_char
+
 				}
 			}
 		}
@@ -132,11 +148,11 @@ focus_tree = {
 	}
 
 	# =========================================
-	# POLITICAL PATH
+	# STARTING PATH
 	# =========================================
 
 	focus = {
-		id = GRA_carolina_question1
+		id = GRA_restoring_order_in_carolina
 		icon = GFX_focus_generic_military
 		relative_position_id = GRA_secure_atlanta
 		x = 0
@@ -145,6 +161,7 @@ focus_tree = {
 		completion_reward = {
 			1107 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -157,6 +174,7 @@ focus_tree = {
 
 			1008 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -169,6 +187,7 @@ focus_tree = {
 
 			1007 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -181,6 +200,7 @@ focus_tree = {
 
 			1006 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -193,6 +213,7 @@ focus_tree = {
 
 			1005 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -205,6 +226,7 @@ focus_tree = {
 
 			363 = {
 				controller = {
+					NOT = { country_tag = GRA }
 					ROOT = {
 						create_wargoal = {
 							target = PREV
@@ -215,18 +237,92 @@ focus_tree = {
 				}
 			}
 			
+			if = {
+				limit = {
+					GRA = {
+						NOT = {
+							OR = {
+								has_non_aggression_pact_with = STC
+								has_subject = STC
+							}
+							
+							}
+					}
+				}
+				1025 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1025}
+							}
+						}
+					}
+				}
+				1024 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1024}
+							}
+						}
+					}
+				}
+				1023 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1023}
+							}
+						}
+					}
+				}
+				364 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {364}
+							}
+						}
+					}
+				}
+				1026 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1026}
+							}
+						}
+					}
+				}
+			}
+
 		}
 	}
 
 
 	focus = {
-		id = GRA_carolina_question2
+		id = GRA_carolina_question1
 		icon = GFX_focus_generic_political
-		relative_position_id = GRA_carolina_question1
+		relative_position_id = GRA_restoring_order_in_carolina
 		x = 0
 		y = 1
 		cost = 4
-		prerequisite = { focus = GRA_carolina_question1 }
+		prerequisite = { focus = GRA_restoring_order_in_carolina }
 		available = {
 			NOT = { has_war_with = LWK }
 			NOT = { has_war_with = RRR }
@@ -300,7 +396,7 @@ focus_tree = {
 		x = 0
 		y = 4
 		cost = 7
-		prerequisite = { focus = GRA_carolina_question2 }
+		prerequisite = { focus = GRA_carolina_question1 }
 		available = {
 			NOT = { has_war_with = LWK }
 			NOT = { has_war_with = RRR }
@@ -311,6 +407,494 @@ focus_tree = {
 			add_political_power = 50
 		}
 	}
+
+	#========================================
+	#collaboration path
+	#========================================
+
+	focus = {
+		id = GRA_carolinian_collaboration
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_secure_atlanta
+		x = 8
+		y = 0
+		cost = 2
+		available = {
+			country_exists = STC
+			NOT = { has_war_with = STC }
+		}
+		completion_reward = {
+			diplomatic_relation = {
+				country = STC
+				relation = non_aggression_pact
+				active = yes
+			}
+			GRA = {
+				give_military_access = STC
+			}
+			STC = {
+				give_military_access = GRA
+			}				
+		}
+	}
+
+	focus = {
+		id = GRA_joining_forces
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_carolinian_collaboration
+		x = 0
+		y = 1
+		cost = 4
+		available = {
+			NOT = { has_war_with = LWK }
+			NOT = { has_war_with = RRR }
+			NOT = { has_war_with = IKA }
+			NOT = { has_war_with = NCA }
+			has_non_aggression_pact_with = STC
+			country_exists = STC
+		}
+		prerequisite = {focus = GRA_carolinian_collaboration}
+		completion_reward = {
+			GRA = {
+                    set_autonomy = {
+                        target = STC
+                        autonomy_state = autonomy_supervised_state
+                    }
+                }
+		}
+	}
+
+	#alabama
+	focus = {
+		id = GRA_restore_order_alabama
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_joining_forces
+		x = 1
+		y = 1
+		cost = 2
+		prerequisite = {focus = GRA_joining_forces}
+		available = {
+			if = {
+				limit = {
+					country_exists = ALA
+					ALA = {
+						has_war_with = BLA
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {country_exists = ALA}
+					OR = {
+						BLA = {
+							OR = {
+								controls_state = 367
+								controls_state = 1015
+								controls_state = 1016
+								controls_state = 1014
+								controls_state = 1012
+								controls_state = 1013
+							}
+						}
+						LOS = {
+							OR = {
+								controls_state = 367
+								controls_state = 1015
+								controls_state = 1016
+								controls_state = 1014
+								controls_state = 1012
+								controls_state = 1013
+							}
+						}
+					}
+				}
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = ALA
+					ALA = {
+						has_war_with = BLA
+						has_war_with = LOS
+					} 
+				}
+				add_to_war = {
+					targeted_alliance = ALA
+					enemy = BLA
+					hostility_reason = asked_to_join
+				}
+				add_to_war = {
+					targeted_alliance = ALA
+					enemy = LOS
+					hostility_reason = asked_to_join
+				}
+				GRA = {
+					give_military_access = ALA
+				}
+				ALA = {
+					give_military_access = GRA
+				}
+			}
+			else_if = {
+				limit = {
+					country_exists = ALA
+					ALA = {
+						has_war_with = BLA
+						NOT = {has_war_with = LOS}
+					}
+				}
+				add_to_war = {
+				targeted_alliance = ALA
+				enemy = BLA
+				hostility_reason = asked_to_join
+				}
+				GRA = {
+					give_military_access = ALA
+				}
+				ALA = {
+					give_military_access = GRA
+				}
+			}
+			else_if = {
+				limit = {
+					country_exists = ALA
+					ALA = {
+						has_war_with = LOS
+						NOT = {has_war_with = BLA}
+					}
+				}
+				add_to_war = {
+				targeted_alliance = ALA
+				enemy = LOS
+				hostility_reason = asked_to_join
+				}
+				GRA = {
+					give_military_access = ALA
+				}
+				ALA = {
+					give_military_access = GRA
+				}
+			}
+			
+			else_if = {
+				limit = {
+					NOT = {country_exists = ALA}					
+				}
+
+				367 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {367}
+							}
+						}
+					}
+				}
+				1012 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1012}
+							}
+						}
+					}
+				}
+				1013 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1013}
+							}
+						}
+					}
+				}
+				1014 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1014}
+							}
+						}
+					}
+				}
+				1015 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1015}
+							}
+						}
+					}
+				}
+				1016 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						NOT = { country_tag = ALA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1016}
+							}
+						}
+					}
+				}												
+			}
+		}
+	}
+
+	#mississippi
+	focus = {
+		id = GRA_restore_order_mississippi
+		icon = GFX_focus_generic_military
+		relative_position_id = GRA_restore_order_alabama
+		x=0
+		y=1
+		prerequisite = {focus = GRA_restore_order_alabama }
+	}
+
+	#florida
+	focus = {
+		id = GRA_the_fight_for_florida
+		icon = GFX_focus_generic_military
+		relative_position_id = GRA_joining_forces
+		x = -1
+		y = 1
+		prerequisite = {focus = GRA_joining_forces}
+		available = {
+			if = {
+				limit = {
+					country_exists = FLA
+					FLA = {
+						OR = {
+							has_war_with = ATW	
+							has_war_with = FLM	
+							has_war_with = MMS	
+							has_war_with = LRA	
+							has_war_with = ZOE	
+						}
+						
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {country_exists = FLA}
+					OR = {
+						country_exists = ATW
+						country_exists = FLM	
+						country_exists = MMS	
+						country_exists = LRA								
+						country_exists = ZOE								
+					}
+				}
+
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = FLA
+					FLA = {
+						OR = {
+							has_war_with = ATW	
+							has_war_with = FLM	
+							has_war_with = MMS	
+							has_war_with = LRA	
+						}
+						
+					}
+				}
+				add_to_war = {
+					targeted_alliance = FLA
+					enemy = ATW
+					hostility_reason = asked_to_join
+				}
+				add_to_war = {
+					targeted_alliance = FLA
+					enemy = FLM
+					hostility_reason = asked_to_join
+				}
+				add_to_war = {
+					targeted_alliance = FLA
+					enemy = MMS
+					hostility_reason = asked_to_join
+				}
+				add_to_war = {
+					targeted_alliance = FLA
+					enemy = LRA
+					hostility_reason = asked_to_join
+				}
+				add_to_war = {
+					targeted_alliance = FLA
+					enemy = ZOE
+					hostility_reason = asked_to_join
+				}
+				GRA = {
+					give_military_access = FLA
+				}
+				FLA = {
+					give_military_access = GRA
+				}
+			}
+			else = {
+				limit = {
+					NOT = {country_exists = FLA}
+					OR = {
+						country_exists = MMS
+						country_exists = FLM
+						country_exists = ATW
+						country_exists = LRA
+					}					
+				}
+
+				935 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {935}
+							}
+						}
+					}
+				}
+				936 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {936}
+							}
+						}
+					}
+				}
+				937 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {937}
+							}
+						}
+					}
+				}
+				938 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {938}
+							}
+						}
+					}
+				}
+				939 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {939}
+							}
+						}
+					}
+				}
+				940 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {940}
+							}
+						}
+					}
+				}
+				1113 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1113}
+							}
+						}
+					}
+				}
+				1060 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1060}
+							}
+						}
+					}
+				}
+				366 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {366}
+							}
+						}
+					}
+				}
+				1092 = {
+					controller = {
+						NOT = { country_tag = GRA }
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1092}
+							}
+						}
+					}
+				}
+				
+
+			}
+		}
+	}
+
 
 	# =========================================
 	# TRUMP PATH
@@ -455,28 +1039,5 @@ focus_tree = {
 		}
 	}
 
-	#============================
-	# ALABAMA PATH (post carolinas)
-	#============================
-
-	focus = {
-		name = GRA_aid_alabama
-		icon = GFX_focus_generic_military
-		x = 5
-		y = 2
-		cost = 4
-		allow_branch = {
-			OR = {
-				has_country_flag = GRA_nc_republicanchoice
-				has_country_flag = GRA_nc_democratchoice
-			}
-			NOT = { has_country_flag = GRA_nc_occupationchoice }
-			country_exists = ALA
-			ALA = {has_war_with = BLA }
-		}
-		completion_reward = {
-			country_event = gra_alabama.1
-		}
-	}
 
 }
