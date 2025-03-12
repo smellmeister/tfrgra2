@@ -1,0 +1,48 @@
+spriteTypes = {
+
+#NorthCarolina
+
+	spriteType = {
+		name = "GFX_portrait_SNC_Dan_Forest"
+		texturefile = "gfx/leaders/SNC/SNC_Dan_Forest.png"
+	}
+
+	spriteType = {
+		name = "GFX_portrait_SNC_Roy_Cooper"
+		texturefile = "gfx/leaders/SNC/SNC_Roy_Cooper.png"
+	}
+
+#Virginia
+
+	spriteType = {
+		name = "GFX_portrait_SVA_Ralph_Northam"
+		texturefile = "gfx/leaders/SVA/SVA_Ralph_Northam.png"
+	}
+
+	spriteType = {
+		name = "GFX_portrait_SVA_Glenn_Youngkin"
+		texturefile = "gfx/leaders/SVA/SVA_Glenn_Youngkin.png"
+	}
+
+	spriteType = {
+		name = "GFX_portrait_SVA_Ed_Gillespie"
+		texturefile = "gfx/leaders/SVA/SVA_Ed_Gillespie.png"
+	}
+
+#Georgia
+
+	spriteType = {
+		name = "GFX_portrait_GRA_capitol"
+		texturefile = "gfx/leaders/GRA/GRA_capitol.png"
+	}
+
+	spriteType = {
+		name = "GFX_portrait_Dennis_Watts"
+		texturefile = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
+	}
+
+	spriteType = {
+		name = "GFX_portrait_Robert_Bayne"
+		texturefile = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
+	}
+}

@@ -1,0 +1,22 @@
+USA_second_american_civil_war_category  = {
+
+    GRA_occupy_northcarolina_decision = {
+        allowed = { tag = GRA }
+        visible = { 
+            has_country_flag = GRA_nc_occupationchoice
+            has_subject = SNC
+             }
+        icon = USA_american_reunification
+        cost = 0
+        complete_effect = {
+            SNC = { 
+                add_stability = -0.1
+                every_controlled_state = {
+                    add_compliance = 10
+                }
+             }
+        }
+
+    }
+
+}

@@ -1,0 +1,33 @@
+add_namespace = gra
+
+# =========================================
+# EVENT: Securing Atlanta
+# =========================================
+
+country_event = {
+    id = gra.1
+    title = gra.1.t
+    desc = gra.1.d
+    picture = GFX_report_event_rebuilding
+    fire_only_once = yes
+
+    trigger = {
+            GRA = {
+                    has_full_control_of_state = 1017
+            }
+        }
+
+    option = {
+        name = gra.1.a  # Return capital to Atlanta
+        custom_effect_tooltip = gra.1.a.tooltip
+        set_capital = { state = 1017 }
+        add_stability = 0.03
+        add_political_power = 25
+    }
+
+    option = {
+        name = gra.1.b  # Keep government where it is
+        add_political_power = 50
+        add_stability = 0.01
+    }
+}

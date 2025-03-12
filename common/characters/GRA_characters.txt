@@ -1,0 +1,90 @@
+characters = {
+
+	GRA_capitol_char = {
+		portraits = {
+			civilian = { large = GFX_portrait_GRA_capitol }
+			army = { large = GFX_portrait_GRA_capitol }
+		}
+		country_leader = {
+			ideology = supervised_democracy
+		}
+	}
+	
+	GRA_Dennis_Watts_char = {
+		portraits = {
+			army = { large = GFX_portrait_GRA_Dennis_Watts }
+		}
+	}
+
+	GRA_Robert_Bayne_char = {
+		portraits = {
+			army = { large = GFX_portrait_GRA_Robert_Bayne }
+		}
+	}
+
+	#North Carolina
+	SNC_Dan_Forest_char = {
+		portraits = {
+			civilian = {
+				large = GFX_portrait_SNC_Dan_Forest
+			}
+			army = {
+				large = GFX_portrait_SNC_Dan_Forest
+			}
+		}
+		country_leader={
+			ideology = constitutionalist
+		}
+	}
+
+	SNC_Roy_Cooper_char = {
+		portraits = {
+			civilian = { large = GFX_portrait_SNC_Roy_Cooper }
+			army = { large = GFX_portrait_SNC_Roy_Cooper}
+		}
+		country_leader = { ideology = supervised_democracy_liberal }
+	}
+
+	#Virginia
+	SVA_Ed_Gillespie_char = {
+		portraits = {
+			civilian = {
+				large = GFX_portrait_SVA_Ed_Gillespie
+			}
+			army = {
+				large = GFX_portrait_SVA_Ed_Gillespie
+			}
+		}
+		country_leader = {
+			ideology = right_centrist
+		}
+	}
+
+	SVA_Glenn_Youngkin_char = {
+		portraits = {
+			civilian = {
+				large = GFX_portrait_SVA_Glenn_Youngkin
+			}
+			army = {
+				large = GFX_portrait_SVA_Glenn_Youngkin
+			}
+		}
+		country_leader = {
+			ideology = christian_conservatism
+		}
+	}
+
+	SVA_Ralph_Northam_char = {
+		portraits = {
+			civilian = {
+				large = GFX_portrait_SVA_Ralph_Northam
+			}
+			army = {
+				large = GFX_portrait_SVA_Ralph_Northam
+			}
+		}
+		country_leader = {
+			ideology = supervised_democracy_liberal
+		}
+	}
+}

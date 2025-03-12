@@ -1,0 +1,38 @@
+﻿l_english:
+  gra.1.t: "Atlanta Secured"
+  gra.1.d: "After heavy fighting, Georgia's forces have successfully driven out the Redneck Revolt from Atlanta. Now, a crucial decision must be made regarding the seat of government.\n\nShould we return the capital to Atlanta, symbolizing our full control over the state, or should we maintain our current capital location to avoid potential unrest?"
+  gra.1.a: "Return the Capital to Atlanta"
+  gra.1.a.tooltip: "The capital will be relocated back to Atlanta, strengthening Georgia’s legitimacy."
+  gra.1.b: "Keep the Government Where It Is"
+
+
+gra_ncarolina.1.t: "Control over the Carolinas"
+gra_ncarolina.1.desc: "Now that the federal forces have been quelled, we must decide what to do with the territory we occupy in North Carolina."
+gra_ncarolina.1.a: "Dan Forest is our preferred candidate."
+gra_ncarolina.1.b: "We should restore Cooper as the governor."
+gra_ncarolina.1.c: "Occupying the area is for the best."
+
+GRA_nc_repub_governor: "Republican candidate Dan Forest will be chosen to govern North Carolina."
+GRA_nc_democ_governor: "The incumbent Democrat governor Roy Cooper will be restored to power."
+GRA_nc_occupy: "North Carolina will be governed under Georgian military administration."
+
+
+GRA_north_carolina_category: "Georgia in the Carolinas"
+GRA_occupy_northcarolina_decision: "Enact Martial Law"
+
+
+gra_scarolina.1.t: "South Carolina's Proposal"
+GRA_sc_nonagg_puppet: "Georgia will collaborate with the government of South Carolina."
+gra_scarolina.1.desc: "The governor of South Carolina has expressed an interest in increased cooperation between our governments."
+gra_scarolina.1.a: "We are glad to help."
+gra_scarolina.1.b: "Sure, but we could use a change in management.."
+gra_scarolina.1.c: "We could use an ally."
+
+
+gra.1.t: "Atlanta Secured"
+gra.1.d: "After heavy fighting, Georgia's forces have successfully driven out the Redneck Revolt from Atlanta. Now, a crucial decision must be made regarding the seat of government.\n\nShould we return the capital to Atlanta, symbolizing our full control over the state, or should we maintain our current capital location to avoid potential unrest?"
+  
+gra.1.a: "Return the Capital to Atlanta"
+gra.1.a.tooltip: "The capital will be relocated back to Atlanta, strengthening Georgia’s legitimacy."
+  
+gra.1.b: "Keep the Government Where It Is"

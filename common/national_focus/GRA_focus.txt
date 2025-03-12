@@ -1,0 +1,482 @@
+focus_tree = {
+	id = GRA_focus_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 50
+			tag = GRA
+		}
+	}
+
+	# =========================================
+	# STARTING FOCUS: SECURING ATLANTA
+	# =========================================
+
+	focus = {
+		id = GRA_prepare_for_battle
+		icon = GFX_focus_generic_military
+		x = 0
+		y = 0
+		cost = 7
+		cancel_if_invalid = yes
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		ai_will_do = { base = 5 }
+
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+
+			# Grant Equipment
+			add_equipment_to_stockpile = {
+				#type = infantry_equipment_0
+				amount = 10000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 2500
+			}
+
+			# Spawn 4 Volunteer Militias in the capital state
+			random_owned_controlled_state = {
+				limit = {
+					is_capital = yes
+				}
+				set_temp_variable = {
+					var = GRA_recruit_militia_tooltip_var_temp
+					value = 4
+				}
+				custom_effect_tooltip = GRA_raise_militia_state_tooltip
+				hidden_effect = {
+					create_unit = {
+						division = "name = \"1st GSDF Brigade\" division_template = \"National Guard\" start_experience_factor = 0.1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"2nd GSDF Brigade\" division_template = \"National Guard\" start_experience_factor = 0.1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"3rd GSDF Brigade\" division_template = \"National Guard\" start_experience_factor = 0.1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"4th GSDF Brigade\" division_template = \"National Guard\" start_experience_factor = 0.1"
+						owner = ROOT
+					}
+					recruit_character = GRA_Dennis_Watts_char
+					recruit_character = GRA_Robert_Bayne_char
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GRA_secure_atlanta
+		icon = GFX_focus_generic_war_preparation
+		relative_position_id = GRA_prepare_for_battle
+		x = 0
+		y = 1
+		cost = 7
+		cancel_if_invalid = yes
+		prerequisite = { focus = GRA_prepare_for_battle }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		ai_will_do = { base = 5 }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = -0.05
+			add_political_power = 50
+
+			create_wargoal = {
+				type = take_state_focus
+				target = RRR
+				#state = 1017
+			}
+		}
+	}
+
+	# =========================================
+	# MILITARY PATH
+	# =========================================
+
+	focus = {
+		id = GRA_military_expansion
+		icon = GFX_focus_generic_army
+		relative_position_id = GRA_secure_atlanta
+		x = -1
+		y = 1
+		cost = 7
+		prerequisite = { focus = GRA_secure_atlanta }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 1020 1021 365 }
+                limit = {
+                  is_core_of = GRA
+                  free_building_slots = {
+                  building = arms_factory
+                  size > 0
+                  include_locked = yes
+                  }
+                }
+                  add_extra_state_shared_building_slots = 1
+                  add_building_construction = {
+                  type = arms_factory
+                  level = 1
+                  instant_build = yes
+                }
+              }
+
+		}
+	}
+
+	# =========================================
+	# POLITICAL PATH
+	# =========================================
+
+	focus = {
+		id = GRA_carolina_question1
+		icon = GFX_focus_generic_military
+		relative_position_id = GRA_secure_atlanta
+		x = 0
+		y = 2
+		prerequisite = { focus = GRA_secure_atlanta }
+		completion_reward = {
+			1107 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {1107}
+						}
+					}
+				}
+			}
+
+			1008 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {1008}
+						}
+					}
+				}
+			}
+
+			1007 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {1007}
+						}
+					}
+				}
+			}
+
+			1006 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {1006}
+						}
+					}
+				}
+			}
+
+			1005 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {1005}
+						}
+					}
+				}
+			}
+
+			363 = {
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = take_state_focus
+							generator = {363}
+						}
+					}
+				}
+			}
+			
+		}
+	}
+
+
+	focus = {
+		id = GRA_carolina_question2
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_carolina_question1
+		x = 0
+		y = 1
+		cost = 4
+		prerequisite = { focus = GRA_carolina_question1 }
+		available = {
+			NOT = { has_war_with = LWK }
+			NOT = { has_war_with = RRR }
+			NOT = { has_war_with = IKA }
+			NOT = { has_war_with = NCA }
+
+			GRA = {
+					has_full_control_of_state = 1107
+					has_full_control_of_state = 1008
+					has_full_control_of_state = 1007
+					has_full_control_of_state = 1006
+					has_full_control_of_state = 1005
+					has_full_control_of_state = 363
+			}
+
+		}
+
+		completion_reward = {
+
+			SNC = {
+					add_state_core = 1107
+					add_state_core = 1008
+					add_state_core = 1007
+					add_state_core = 1006
+					add_state_core = 1005
+					add_state_core = 363
+
+				}
+			release = SNC
+
+			GRA = { 
+				set_country_flag = GRA_released_nc_flag 
+				country_event = {
+					id = gra_ncarolina.1
+				}
+			}
+					if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+
+					GRA = {
+						if = {
+							limit = { has_country_flag = GRA_released_nc_flag }
+							set_autonomy = {
+								target = SNC
+								autonomy_state = autonomy_integrated_puppet
+							}
+						}
+					}
+				}
+					else = {
+				if = {
+					limit = { has_country_flag = GRA_released_nc_flag }
+					GRA = { puppet = SNC }
+				}
+			}
+
+		}
+
+	}
+
+
+	focus = {
+		id = GRA_consider_our_standing
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_secure_atlanta
+		x = 0
+		y = 4
+		cost = 7
+		prerequisite = { focus = GRA_carolina_question2 }
+		available = {
+			NOT = { has_war_with = LWK }
+			NOT = { has_war_with = RRR }
+			NOT = { has_war_with = IKA }
+			NOT = { has_war_with = NCA }
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	# =========================================
+	# TRUMP PATH
+	# =========================================
+
+	focus = {
+		id = GRA_side_with_trump
+		icon = GFX_focus_USC_revive_the_american_spirit
+		relative_position_id = GRA_consider_our_standing
+		prerequisite = { focus = GRA_consider_our_standing }
+		cost = 5
+		cancel_if_invalid = yes
+		mutually_exclusive = {
+			focus = GRA_side_with_biden
+			focus = GRA_go_our_own_way
+		}
+		allow_branch = {
+			NOT = {
+				has_completed_focus = GRA_side_with_biden
+			}
+		}
+		x = -3
+		y = 1
+		ai_will_do = {
+			base = 1
+			modifier = {
+				has_government = conservative
+				add = 5
+			}
+		}
+		completion_reward = {
+			add_ideas = siding_with_trump
+		}
+	}
+
+	# =========================================
+	# BIDEN PATH
+	# =========================================
+
+	focus = {
+		id = GRA_side_with_biden
+		icon = GFX_focus_USB_discourage_anti_americanism
+		relative_position_id = GRA_consider_our_standing
+		prerequisite = { focus = GRA_consider_our_standing }
+		x = 3
+		y = 1
+		mutually_exclusive = {
+			focus = GRA_side_with_trump
+			focus = GRA_go_our_own_way
+		}
+		cost = 5
+		cancel_if_invalid = yes
+		ai_will_do = {
+			base = 1
+			modifier = {
+				has_government = social_liberal
+				add = 5
+			}
+		}
+		completion_reward = {
+			add_ideas = siding_with_biden
+			load_focus_tree = {
+				tree = GRA_focus_tree
+				keep_completed = yes
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
+		ai_will_do = {
+			base = 6
+		}
+	}
+
+	focus = {
+		id = GRA_dogfaced_ponysoldier
+		icon = GFX_focus_USB_discourage_anti_americanism
+		relative_position_id = GRA_side_with_biden
+		prerequisite = {focus = GRA_side_with_biden}
+		cost = 5
+		cancel_if_invalid = yes
+		x = 0
+		y = 1
+		allow_branch = {
+			has_idea = siding_with_biden
+		}
+
+	}
+
+	# =========================================
+	# INDEPENDENT PATH
+	# =========================================
+
+	focus = {
+		id = GRA_go_our_own_way
+		icon = GFX_focus_USC_revive_the_american_spirit
+		relative_position_id = GRA_consider_our_standing
+		prerequisite = { focus = GRA_consider_our_standing }
+		mutually_exclusive = {
+			focus = GRA_side_with_biden
+			focus = GRA_side_with_trump
+		}
+		allow_branch = {
+			NOT = {
+				has_completed_focus = GRA_side_with_biden
+				has_completed_focus = GRA_side_with_trump
+			}
+		}
+		x = 0
+		y = 1
+
+	}
+
+	# =========================================
+	# INFRASTRUCTURE & REFORMS PATH
+	# =========================================
+
+	focus = {
+		id = GRA_infrastructure_reform
+		icon = GFX_focus_generic_construction
+		relative_position_id = GRA_secure_atlanta
+		x = 1
+		y = 1
+		cost = 7
+		prerequisite = { focus = GRA_secure_atlanta }
+		completion_reward = {
+			random_owned_controlled_state = {
+            	limit = {
+            		is_core_of = GRA
+            		free_building_slots = {
+            		building = industrial_complex
+            		size > 0
+            		include_locked = yes
+            		}
+            	}
+            		add_extra_state_shared_building_slots = 1
+            		add_building_construction = {
+            		type = industrial_complex
+            		level = 1
+            		instant_build = yes
+            		}
+            }
+
+		}
+	}
+
+	#============================
+	# ALABAMA PATH (post carolinas)
+	#============================
+
+	focus = {
+		name = GRA_aid_alabama
+		icon = GFX_focus_generic_military
+		x = 5
+		y = 2
+		cost = 4
+		allow_branch = {
+			OR = {
+				has_country_flag = GRA_nc_republicanchoice
+				has_country_flag = GRA_nc_democratchoice
+			}
+			NOT = { has_country_flag = GRA_nc_occupationchoice }
+			country_exists = ALA
+			ALA = {has_war_with = BLA }
+		}
+		completion_reward = {
+			country_event = gra_alabama.1
+		}
+	}
+
+}

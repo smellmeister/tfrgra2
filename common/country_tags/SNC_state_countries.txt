@@ -1,0 +1,3 @@
+SNC = "countries/North Carolina State.txt"
+SVA = "countries/Virginia State.txt"
+STN = "countries/Tennessee State.txt"
