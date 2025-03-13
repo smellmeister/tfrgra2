@@ -37,12 +37,12 @@ spriteTypes = {
 	}
 
 	spriteType = {
-		name = "GFX_portrait_Dennis_Watts"
+		name = "GFX_portrait_GRA_Dennis_Watts"
 		texturefile = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
 	}
 
 	spriteType = {
-		name = "GFX_portrait_Robert_Bayne"
+		name = "GFX_portrait_GRA_Robert_Bayne"
 		texturefile = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
 	}
 }

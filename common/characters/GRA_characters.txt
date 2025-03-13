@@ -12,16 +12,48 @@ characters = {
 	
 	GRA_Dennis_Watts_char = {
 		portraits = {
-			army = { large = GFX_portrait_GRA_Dennis_Watts }
+			army = { 
+				large = GFX_portrait_GRA_Dennis_Watts
+				small = GFX_portrait_GRA_Dennis_Watts
+				}
+			civilian = { 
+				large = GFX_portrait_GRA_Dennis_Watts
+				small = GFX_portrait_GRA_Dennis_Watts
+				}
 		}
+		corps_commander = {
+            traits = { }
+            skill = 2
+            attack_skill = 3
+            defense_skill = 3
+            planning_skill = 4
+            logistics_skill = 5
+            visible = { GRA = {has_country_flag = GRA_mobilized_GSDF} }
+        }
 	}
 
 	GRA_Robert_Bayne_char = {
 		portraits = {
-			army = { large = GFX_portrait_GRA_Robert_Bayne }
+			army = { 
+				large = GFX_portrait_GRA_Robert_Bayne 
+				small = GFX_portrait_GRA_Robert_Bayne
+			}
+			civilian = { 
+				large = GFX_portrait_GRA_Robert_Bayne
+				small = GFX_portrait_GRA_Robert_Bayne
+			}
+		corps_commander = {
+            traits = { }
+            skill = 2
+            attack_skill = 3
+            defense_skill = 3
+            planning_skill = 4
+            logistics_skill = 5
+            visible = { GRA = {has_country_flag = GRA_mobilized_GSDF} }
+			}
 		}
 	}
-
+	
 	#North Carolina
 	SNC_Dan_Forest_char = {
 		portraits = {
