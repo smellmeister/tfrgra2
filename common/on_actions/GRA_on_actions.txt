@@ -1,0 +1,73 @@
+on_actions = {
+
+    on_capitulation = {
+
+        effect = {
+
+            if = {
+                limit = {
+                    AND = {
+                        tag = LOS
+                        367 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 367 }
+                                }
+                            }
+                        }
+                        1015 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 1015 }
+                                }
+                            }
+                        }
+                        1016 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 1016 }
+                                }
+                            }
+                        }
+                        1014 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 1014 }
+                                }
+                            }
+                        }
+                        1012 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 1012 }
+                                }
+                            }
+                        }
+                        1013 = {
+                            OR = {
+                                is_fully_controlled_by = GRA
+                                AND = {
+                                    controller = { is_subject_of = GRA }
+                                    controller = { has_full_control_of_state = 1013 }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                
+                country_event = {id = gra_alabama.1}
+            }
+        }
+    }
+}

@@ -36,3 +36,6 @@ gra.1.a: "Return the Capital to Atlanta"
 gra.1.a.tooltip: "The capital will be relocated back to Atlanta, strengthening Georgia’s legitimacy."
   
 gra.1.b: "Keep the Government Where It Is"
+
+gra_alabama.1.t: "Alabama Secured"
+gra_alabama.1.a: "yippee"

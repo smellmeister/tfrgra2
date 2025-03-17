@@ -38,12 +38,11 @@ country_event = {
             }
             set_autonomy = {
                 target = SNC
-                autonomous_state = autonomy_supervised_state
+                autonomous_state = autonomy_integrated_puppet
             }
             
             set_country_flag = GRA_nc_republicanchoice
         }
-        country_event = gra_scarolina.1
         #increase relations with usc
         add_opinion_modifier = { target = USC modifier = small_increase }
         #country flag for next event
@@ -76,14 +75,9 @@ country_event = {
                     ideology = supervised_democracy_liberal
                 }
             }
-            set_autonomy = {
-                target = STC
-                autonomous_state = autonomy_supervised_state
-            }
 
 
         }
-        country_event = gra_scarolina.1
         add_opinion_modifier = { target = USB modifier = small_increase }
     }
     #occupation option

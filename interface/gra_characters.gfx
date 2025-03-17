@@ -45,4 +45,13 @@ spriteTypes = {
 		name = "GFX_portrait_GRA_Robert_Bayne"
 		texturefile = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
 	}
+#Arkansas
+
+	spriteType = {
+		name = "GFX_portrait_SAK_Asa_Hutchinson"
+		texturefile = "gfx/leaders/SAK/SAK_Asa_Hutchinson.png"
+	}
+
 }
+
+

@@ -13,12 +13,12 @@ characters = {
 	GRA_Dennis_Watts_char = {
 		portraits = {
 			army = { 
-				large = GFX_portrait_GRA_Dennis_Watts
-				small = GFX_portrait_GRA_Dennis_Watts
+				large = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
+				small = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
 				}
 			civilian = { 
-				large = GFX_portrait_GRA_Dennis_Watts
-				small = GFX_portrait_GRA_Dennis_Watts
+				large = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
+				small = "gfx/leaders/GRA/GRA_Dennis_Watts.png"
 				}
 		}
 		corps_commander = {
@@ -35,13 +35,14 @@ characters = {
 	GRA_Robert_Bayne_char = {
 		portraits = {
 			army = { 
-				large = GFX_portrait_GRA_Robert_Bayne 
-				small = GFX_portrait_GRA_Robert_Bayne
+				large = "gfx/leaders/GRA/GRA_Robert_Bayne.png" 
+				small = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
 			}
 			civilian = { 
-				large = GFX_portrait_GRA_Robert_Bayne
-				small = GFX_portrait_GRA_Robert_Bayne
+				large = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
+				small = "gfx/leaders/GRA/GRA_Robert_Bayne.png"
 			}
+		}
 		corps_commander = {
             traits = { }
             skill = 2
@@ -54,7 +55,7 @@ characters = {
 		}
 	}
 	
-	#North Carolina
+#North Carolina
 	SNC_Dan_Forest_char = {
 		portraits = {
 			civilian = {
@@ -77,7 +78,7 @@ characters = {
 		country_leader = { ideology = supervised_democracy_liberal }
 	}
 
-	#Virginia
+#Virginia
 	SVA_Ed_Gillespie_char = {
 		portraits = {
 			civilian = {
@@ -119,4 +120,20 @@ characters = {
 			ideology = supervised_democracy_liberal
 		}
 	}
+
+#Arkansas
+	SAK_Asa_Hutchinson_char = {
+		portraits = {
+			civilian = {
+				large = GFX_portrait_SAK_Asa_Hutchinson
+			}
+			army = {
+				large = GFX_portrait_SAK_Asa_Hutchinson
+			}
+		}
+		country_leader = {
+			ideology = christian_conservatism
+		}
+	}
+
 }

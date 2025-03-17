@@ -17,13 +17,14 @@ focus_tree = {
 		icon = GFX_focus_generic_military
 		x = 0
 		y = 0
-		cost = 2
+		cost = 1
 		cancel_if_invalid = yes
 		search_filters = { FOCUS_FILTER_MANPOWER }
 
 		ai_will_do = { base = 5 }
 
 		completion_reward = {
+			set_country_flag = GRA_mobilized_GSDF
 			add_political_power = 50
 			add_war_support = 0.05
 			# Grant Equipment
@@ -141,276 +142,13 @@ focus_tree = {
 	# =========================================
 
 	focus = {
-		id = GRA_restoring_order_in_carolina
-		icon = GFX_focus_generic_military
-		relative_position_id = GRA_secure_atlanta
-		x = 0
-		y = 2
-		cost = 1
-		prerequisite = { focus = GRA_secure_atlanta }
-		completion_reward = {
-			1107 = {
-				limit = {
-					NOT = { is_controlled_by = GRA }
-				}				
-				controller = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = take_state_focus
-							generator = {1107}
-						}
-					}
-				}
-			}
-
-			1008 = {
-				limit = {
-					NOT = { is_controlled_by = GRA }
-				}				
-				controller = {
-					ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {1008}
-							}
-					}
-				}
-			}
-
-			1007 = {
-				limit = {
-					NOT = { is_controlled_by = GRA }
-				}				
-				controller = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = take_state_focus
-							generator = {1007}
-						}
-					}
-				}
-			}
-
-			1006 = {
-				limit = {
-					NOT = { is_controlled_by = GRA }
-				}				
-				controller = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = take_state_focus
-							generator = {1006}
-						}
-					}
-				}
-			}
-
-			1005 = {
-				limit = {
-					NOT = { is_controlled_by = GRA }
-				}				
-				controller = {
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = take_state_focus
-							generator = {1005}
-						}
-					}
-				}
-			}
-
-			363 = {
-				controller = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}					
-					ROOT = {
-						create_wargoal = {
-							target = PREV
-							type = take_state_focus
-							generator = {363}
-						}
-					}
-				}
-			}
-
-			
-			if = {
-				limit = {
-					GRA = {
-						NOT = {
-							OR = {
-								has_non_aggression_pact_with = STC
-								has_subject = STC
-							}
-							
-							}
-					}
-				}
-				1025 = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}
-					controller = {
-						NOT = { country_tag = GRA }
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {1025}
-							}
-						}
-					}
-				}
-				1024 = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}
-					controller = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {1024}
-							}
-						}
-					}
-				}
-				1023 = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}
-					controller = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {1023}
-							}
-						}
-					}
-				}
-				364 = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}
-					controller = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {364}
-							}
-						}
-					}
-				}
-				1026 = {
-					limit = {
-						NOT = { is_controlled_by = GRA }
-					}
-					controller = {
-						ROOT = {
-							create_wargoal = {
-								target = PREV
-								type = take_state_focus
-								generator = {1026}
-							}
-						}
-					}
-				}
-			}
-
-		}
-	}
-
-
-	focus = {
-		id = GRA_carolina_question1
-		icon = GFX_focus_generic_political
-		relative_position_id = GRA_restoring_order_in_carolina
-		x = 0
-		y = 1
-		cost = 4
-		prerequisite = { focus = GRA_restoring_order_in_carolina }
-		available = {
-			NOT = { has_war_with = LWK }
-			NOT = { has_war_with = RRR }
-			NOT = { has_war_with = IKA }
-			NOT = { has_war_with = NCA }
-
-			GRA = {
-				has_full_control_of_state = 1107
-				has_full_control_of_state = 1008
-				has_full_control_of_state = 1007
-				has_full_control_of_state = 1006
-				has_full_control_of_state = 1005
-				has_full_control_of_state = 363
-			}
-
-		}
-
-		completion_reward = {
-
-			SNC = {
-					add_state_core = 1107
-					add_state_core = 1008
-					add_state_core = 1007
-					add_state_core = 1006
-					add_state_core = 1005
-					add_state_core = 363
-
-				}
-			release = SNC
-
-			GRA = { 
-				set_country_flag = GRA_released_nc_flag 
-				country_event = {
-					id = gra_ncarolina.1
-				}
-			}
-					if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Man the Guns"
-						}
-					}
-
-					GRA = {
-						if = {
-							limit = { has_country_flag = GRA_released_nc_flag }
-							set_autonomy = {
-								target = SNC
-								autonomy_state = autonomy_integrated_puppet
-							}
-						}
-					}
-				}
-					else = {
-				if = {
-					limit = { has_country_flag = GRA_released_nc_flag }
-					GRA = { puppet = SNC }
-				}
-			}
-
-		}
-
-	}
-
-
-	focus = {
 		id = GRA_consider_our_standing
 		icon = GFX_focus_generic_political
 		relative_position_id = GRA_secure_atlanta
 		x = 0
-		y = 4
+		y = 2
 		cost = 7
-		prerequisite = { focus = GRA_carolina_question1 }
+		prerequisite = { focus = GRA_secure_atlanta }
 		available = {
 			NOT = { has_war_with = LWK }
 			NOT = { has_war_with = RRR }
@@ -432,7 +170,7 @@ focus_tree = {
 		relative_position_id = GRA_secure_atlanta
 		x = 8
 		y = 0
-		cost = 2
+		cost = 1
 		available = {
 			country_exists = STC
 			NOT = { has_war_with = STC }
@@ -453,28 +191,29 @@ focus_tree = {
 	}
 
 	focus = {
-		id = GRA_joining_forces
+		id = GRA_alabama_aid
 		icon = GFX_focus_generic_political
-		relative_position_id = GRA_carolinian_collaboration
-		x = 0
-		y = 1
-		cost = 4
+		relative_position_id = GRA_secure_atlanta
+		x = 10
+		y = 0
+		cost = 1
 		available = {
-			NOT = { has_war_with = LWK }
-			NOT = { has_war_with = RRR }
-			NOT = { has_war_with = IKA }
-			NOT = { has_war_with = NCA }
-			has_non_aggression_pact_with = STC
-			country_exists = STC
+			country_exists = ALA
+			NOT = { has_war_with = ALA }
 		}
-		prerequisite = {focus = GRA_carolinian_collaboration}
 		completion_reward = {
+			diplomatic_relation = {
+				country = ALA
+				relation = non_aggression_pact
+				active = yes
+			}
 			GRA = {
-                    set_autonomy = {
-                        target = STC
-                        autonomy_state = autonomy_supervised_state
-                    }
-                }
+				give_military_access = ALA
+			}
+			ALA = {
+				give_military_access = GRA
+			}
+
 		}
 	}
 
@@ -482,11 +221,11 @@ focus_tree = {
 	focus = {
 		id = GRA_restore_order_alabama
 		icon = GFX_focus_generic_political
-		relative_position_id = GRA_joining_forces
+		relative_position_id = GRA_alabama_aid
 		x = 0
 		y = 1
 		cost = 2
-		prerequisite = {focus = GRA_joining_forces}
+		prerequisite = {focus = GRA_alabama_aid}
 		available = {
 			if = {
 				limit = {
@@ -545,6 +284,11 @@ focus_tree = {
 				}
 				GRA = {
 					give_military_access = ALA
+					diplomatic_relation = {
+						country = ALA
+						relation = non_aggression_pact
+						active = yes
+					}
 				}
 				ALA = {
 					give_military_access = GRA
@@ -565,6 +309,11 @@ focus_tree = {
 				}
 				GRA = {
 					give_military_access = ALA
+					diplomatic_relation = {
+						country = ALA
+						relation = non_aggression_pact
+						active = yes
+					}
 				}
 				ALA = {
 					give_military_access = GRA
@@ -690,14 +439,58 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = GRA_joining_forces_alabama
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_restore_order_alabama
+		x = 0
+		y = 2
+		cost = 1
+		available = {
+			has_non_aggression_pact_with = ALA
+			country_exists = ALA
+		}
+		prerequisite = {focus = GRA_restore_order_alabama}
+		completion_reward = {
+			GRA = {
+                    set_autonomy = {
+                        target = ALA
+                        autonomy_state = autonomy_integrated_puppet
+                    }
+                }			
+		}
+	}
+
+	focus = {
+		id = GRA_mobilize_mississippi
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_secure_atlanta
+		x = 12
+		y = 0
+		cost = 1
+		available = {
+			country_exists = MSS
+			NOT = { has_war_with = MSS }
+		}
+		completion_reward = {
+			diplomatic_relation = {
+				country = MSS
+				relation = non_aggression_pact
+				active = yes
+			}
+			GRA = {give_military_access = MSS}
+			MSS = {give_military_access = GRA}
+		}
+	}
+
 	#mississippi
 	focus = {
 		id = GRA_restore_order_mississippi
 		icon = GFX_focus_generic_military
-		relative_position_id = GRA_restore_order_alabama
+		relative_position_id = GRA_mobilize_mississippi
 		x=0
 		y=1
-		prerequisite = {focus = GRA_restore_order_alabama }
+		prerequisite = {focus = GRA_mobilize_mississippi }
 		cost = 2
 		available = {
 			if = {
@@ -805,14 +598,400 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = GRA_joining_forces_mississippi
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_restore_order_mississippi
+		x = 0
+		y = 2
+		cost = 1
+		available = {
+			has_non_aggression_pact_with = MSS
+			country_exists = MSS
+		}
+		prerequisite = {focus = GRA_restore_order_mississippi}
+		completion_reward = {
+			GRA = {
+                    set_autonomy = {
+                        target = MSS
+                        autonomy_state = autonomy_integrated_puppet
+                    }
+                }			
+		}
+	}	
+
+	focus = {
+		id = GRA_restoring_order_in_carolina
+		icon = GFX_focus_generic_military
+		relative_position_id = GRA_carolinian_collaboration
+		x = 0
+		y = 1
+		cost = 1
+		prerequisite = { focus = GRA_carolinian_collaboration }
+		completion_reward = {
+
+			if = {
+				limit = {
+					1107 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				1107 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1107}
+							}
+						}
+					}
+				}
+								
+			}
+			if = {
+				limit = {
+					1005 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				1005 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1005}
+							}
+						}
+					}
+				}
+								
+			}
+			if = {
+				limit = {
+					1006 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				1006 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1006}
+							}
+						}
+					}
+				}
+								
+			}
+			if = {
+				limit = {
+					1007 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				1007 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1007}
+							}
+						}
+					}
+				}
+								
+			}
+			if = {
+				limit = {
+					1008 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				1008 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {1008}
+							}
+						}
+					}
+				}
+								
+			}
+			if = {
+				limit = {
+					363 = {
+						NOT = {
+							OR = {
+								is_controlled_by = GRA
+								controller = {
+									OR = {
+										is_subject_of = GRA
+										has_non_aggression_pact_with = GRA
+									}
+								}
+							}
+						}
+					}
+				}
+				363 = {
+					controller = {
+						ROOT = {
+							create_wargoal = {
+								target = PREV
+								type = take_state_focus
+								generator = {363}
+							}
+						}
+					}
+				}
+								
+			}
+
+		}
+	}
+
+
+	focus = {
+		id = GRA_carolina_question1
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_carolinian_collaboration
+		x = 0
+		y = 2
+		cost = 4
+		prerequisite = { focus = GRA_restoring_order_in_carolina }
+		available = {
+			NOT = { has_war_with = LWK }
+			NOT = { has_war_with = RRR }
+			NOT = { has_war_with = IKA }
+			NOT = { has_war_with = NCA }
+
+			1107 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+			1008 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+			1007 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+			1006 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+			1005 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+			363 = {
+				OR = {
+					is_controlled_by = GRA
+					controller = {
+						OR = {
+							is_subject_of = GRA
+							has_non_aggression_pact_with = GRA
+						}
+					}
+				}						
+			}
+
+
+
+		}
+
+		completion_reward = {
+
+			SNC = {
+					transfer_state = 1107
+					transfer_state = 1008
+					transfer_state = 1007
+					transfer_state = 1006
+					transfer_state = 1005
+					transfer_state = 363
+			}
+			release = SNC
+
+			GRA = { 
+				set_country_flag = GRA_released_nc_flag 
+				country_event = {
+					id = gra_ncarolina.1
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+
+				GRA = {
+					if = {
+						limit = { has_country_flag = GRA_released_nc_flag }
+						set_autonomy = {
+							target = SNC
+							autonomy_state = autonomy_integrated_puppet
+						}
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = { has_country_flag = GRA_released_nc_flag }
+					GRA = { puppet = SNC }
+				}
+			}
+
+		}
+
+	}
+
+
+	focus = {
+		id = GRA_joining_forces
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_carolina_question1
+		x = 0
+		y = 1
+		cost = 4
+		available = {
+			has_non_aggression_pact_with = STC
+			country_exists = STC
+		}
+		prerequisite = {focus = GRA_carolina_question1}
+		completion_reward = {
+			GRA = {
+                    set_autonomy = {
+                        target = STC
+                        autonomy_state = autonomy_integrated_puppet
+                    }
+                }
+		}
+	}
+
+
+	focus = {
+		id = GRA_florida_friendship
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_secure_atlanta
+		x = 14
+		y = 0
+		cost = 1
+		completion_reward = {
+			diplomatic_relation = {
+				country = FLA
+				relation = non_aggression_pact
+				active = yes
+			}
+			GRA = {give_military_access = FLA}
+			FLA = {give_military_access = GRA}
+		}		
+	}
+
+
 	#florida
 	focus = {
-		id = GRA_the_fight_for_florida
+		id = GRA_fight_for_florida
 		icon = GFX_focus_generic_military
-		relative_position_id = GRA_joining_forces
-		x = -2
+		relative_position_id = GRA_florida_friendship
+		x = 0
 		y = 1
-		prerequisite = {focus = GRA_joining_forces}
+		prerequisite = {focus = GRA_florida_friendship}
 		cost = 2
 		available = {
 			if = {
@@ -1061,29 +1240,157 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = GRA_joining_forces_florida
+		icon = GFX_focus_generic_political
+		relative_position_id = GRA_fight_for_florida
+		x = 0
+		y = 2
+		cost = 1
+		available = {
+			has_non_aggression_pact_with = FLA
+			country_exists = FLA
+		}
+		prerequisite = {focus = GRA_fight_for_florida}
+		completion_reward = {
+			GRA = {
+                    set_autonomy = {
+                        target = FLA
+                        autonomy_state = autonomy_integrated_puppet
+                    }
+                }			
+		}
+	}	
+
 	#louisiana and arkansas // league of the south battle
 	focus = {
 		id = GRA_cross_the_mississippi
 		icon = GFX_focus_generic_military
 		relative_position_id = GRA_restore_order_mississippi
-		x = 0
-		y = 1
-		prerequisite = { focus = GRA_restore_order_mississippi }
+		x = -1
+		y = 3
+		prerequisite = { 
+			focus = GRA_joining_forces_mississippi
+			focus = GRA_joining_forces_alabama
+			focus = GRA_joining_forces_florida
+			focus = GRA_joining_forces
+		}
 		available = {
-			OR = {
-				has_war_with = LOS
-				country_exists = LOS
+			if = {
+				limit = {
+					OR = {
+						has_war_with = LOS
+						country_exists = LOS
+					}
+					LOS = {
+						OR = {
+							has_full_control_of_state = 982
+							has_full_control_of_state = 980
+							has_full_control_of_state = 979
+							has_full_control_of_state = 371
+							has_full_control_of_state = 981
+							has_full_control_of_state = 1106
+							has_full_control_of_state = 372
+							has_full_control_of_state = 1105						
+						}
+					}
+				}
 			}
-			LOS = {
-				OR = {
-					has_full_control_of_state = 982
-					has_full_control_of_state = 980
-					has_full_control_of_state = 979
-					has_full_control_of_state = 371
-					has_full_control_of_state = 981
-					has_full_control_of_state = 1106
-					has_full_control_of_state = 372
-					has_full_control_of_state = 1105						
+
+			else = {
+				limit = {
+					NOT = {
+						has_war_with = LOS
+						has_war_with = BLA
+					}
+					982 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					980 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					979 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					371 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					981 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					1106 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					372 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					1105 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}					
 				}
 			}
 		}
@@ -1099,9 +1406,9 @@ focus_tree = {
 					hostility_reason = asked_to_join
 				}
 				GRA = {
-					give_military_access = FLA
+					give_military_access = LOU
 				}
-				FLA = {
+				LOU = {
 					give_military_access = GRA
 				}
 			}
@@ -1238,6 +1545,159 @@ focus_tree = {
 						}
 					}
 				}	
+
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						country_exists = LOS
+						country_exists = LOU
+					}
+										982 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					980 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					979 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					371 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					981 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					1106 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					372 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}
+					1105 = {
+						OR = {
+							is_controlled_by = GRA
+							controller = {
+								OR = {
+									is_subject_of = GRA
+									has_non_aggression_pact_with = GRA
+								}
+							}
+						}						
+					}	
+				}
+
+				LOU = {
+					transfer_state = 982
+					transfer_state = 978
+					transfer_state = 979
+					transfer_state = 980
+					transfer_state = 981	
+					transfer_state = 371	
+				}
+				release = LOU
+				SAK = {
+					transfer_state = 1105
+					transfer_state = 372
+					transfer_state = 1106
+				}
+				release = SAK
+				GRA = { 
+					set_country_flag = GRA_released_lou_flag 
+					set_country_flag = GRA_released_sak_flag 					
+				}
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+
+					GRA = {
+						if = {
+							limit = { 
+								has_country_flag = GRA_released_lou_flag
+								has_country_flag = GRA_released_sak_flag
+							}
+							set_autonomy = {
+								target = LOU
+								autonomy_state = autonomy_integrated_puppet
+							}
+							set_autonomy = {
+								target = SAK
+								autonomy_state = autonomy_integrated_puppet
+							}
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = { 
+							has_country_flag = GRA_released_lou_flag
+							has_country_flag = GRA_released_sak_flag
+						}
+						GRA = { puppet = LOU }
+						GRA = { puppet = SAK }
+					}
+				}
+
 
 			}
 		}
